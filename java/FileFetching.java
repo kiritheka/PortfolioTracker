@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 public class FileFetching {
 
 	public static void main(String args[]) {
-		
+		/*
 		try {
 			FileInputStream fstream = new FileInputStream("/home/linuxuser/portfolio.txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
@@ -27,11 +27,12 @@ public class FileFetching {
 			for (String[] country : list) {
 				  System.out.println(Arrays.toString(country); // or whatever
 				}	
-		}
+		}*/
+	
 		
 		
 
-		/*try {
+		try {
 			//System.out.println(Files.lines(new File("/home/linuxuser/portfolio.txt").toPath()).collect(Collectors.toList()));
 			FileInputStream fstream = new FileInputStream("/home/linuxuser/portfolio.txt");
 			BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
@@ -40,21 +41,39 @@ public class FileFetching {
 			int count=0;
 			String[] stringArr;
 			while ((strLine = br.readLine()) != null) {
-				list.add(strLine);
+				list.add(count,strLine);
 				//System.out.println(strLine);
-				 stringArr = list.toArray(new String[count]);
+				/* stringArr = list.toArray(new String[count]);
 				 list.clear();
-				System.out.println(Arrays.toString(stringArr));
+				System.out.println(Arrays.toString(stringArr));*/
+				//System.out.println(list.get(count));
 				count++;
-			}
-			
-			//System.out.println(Arrays.toString(stringArr));
 
+			}
+		
+
+			/*String[] items = new String[3]; // <--initialized statement
+			for (int i = 0; i<list.size(); i++){
+	            items[i] = list.get(i).split("[-,]");
+	            System.out.println(Arrays.toString(items));
+	        }*/
+			
+			double[] arrDouble = new double[list.size()];
+		       for(int i=0; i<list.size(); i++)
+		       {
+		          arrDouble[i] = Double.valueOf(list.get(i));
+		          System.out.println(arrDouble);
+		       }
+		      
+			
+			
 			fstream.close();
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 		}
-*/
+		
+	
+
 	}
 	
 }

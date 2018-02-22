@@ -10,18 +10,18 @@ public class ReadLine {
 
     public static void main(String[] args) {        
         try {
-            File f = new File("/home/linuxuser/portfolio.txt");
-            Scanner sc = new Scanner(f);
+            File file = new File("/home/linuxuser/portfolio.txt");
+            Scanner sc = new Scanner(file);
 
             List<Person> people = new ArrayList<Person>();
 
             while(sc.hasNextLine()){
                 String line = sc.nextLine();
-                String[] details = line.split(":");
-                String gender = details[0];
-                String name = details[1];
-                int age = Integer.parseInt(details[2]);
-                Person p = new Person(gender, name, age);
+                String[] eachstock = line.split("[-,]");
+                String stockName = eachstock[0];
+                String numberOfStock = eachstock[1];
+                //int age = Integer.parseInt(details[2]);
+                Person p = new Person(stockName, numberOfStock);
                 people.add(p);
             }
 
@@ -41,10 +41,10 @@ class Person{
     private String name;
     private int age;
 
-    public Person(String gender, String name, int age){
+    public Person(String gender, String name){
         this.gender = gender;
         this.setName(name);
-        this.age = age;
+       // this.age = age;
     }
 
     /**
