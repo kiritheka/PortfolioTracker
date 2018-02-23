@@ -23,13 +23,15 @@ public class Delimiting {
 			String strLine;
 
 			while ((strLine = br.readLine()) != null) {
-				String[] splitted = strLine.split("-");
+				String[] splitted = strLine.split("[-,]");
 				String arr = Arrays.toString(splitted);
-				System.out.println(arr);
+				//System.out.println(arr);
+				System.out.println(splitted[4]);
 
-				ArrayList myList = new ArrayList(Arrays.asList(arr.split(",")));
-				System.out.println(myList);
-				System.out.println(Integer.parseInt((String) myList.get(1)));
+
+				//ArrayList myList = new ArrayList(Arrays.asList(arr.split(",")));
+				//System.out.println(myList);
+				//System.out.println(Integer.parseInt((String) myList.get(1)));
 				/*int b = (int) myList.get(3);
 				int c = a*b;
 				System.out.println(c);*/

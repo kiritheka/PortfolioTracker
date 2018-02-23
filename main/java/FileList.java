@@ -25,6 +25,7 @@ public class FileList {
 
 				String[] splitted = strLine.split("[-,]");
 				System.out.println(Arrays.toString(splitted));
+				//System.out.println(splitted[05]);
 			}
 			
 

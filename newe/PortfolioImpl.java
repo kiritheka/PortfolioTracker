@@ -1,19 +1,30 @@
+package newe;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.ListIterator;
 
-import main.java.FileFetching;
+public class PortfolioImpl implements Portfolio {
 
-public class PortTracker {
+	@Override
+	public void stockValue(int GOOG,int INFY,int MS,int AMZN) {
+
+		GOOG = 500;
+		 INFY = 1000;
+		 MS = 900;
+		 AMZN = 2000;
+		
+		
+	}
 
 	public int fileFetching() {
 		List<String[]> list = new ArrayList<String[]>();
 		String strLine;
 		int count = 0;
+		System.out.println(goog); 
 
 		try {
 			FileInputStream fstream = new FileInputStream("/home/linuxuser/portfolio.txt");
@@ -23,20 +34,23 @@ public class PortTracker {
 				String[] splitted = strLine.split("[-,]");
 				list.add(count, splitted);
 				System.out.println(Arrays.toString(list.get(count)));
-				count++;
+				count++;	
 			}
-
 			fstream.close();
 		} catch (Exception e) {
 			System.err.println("Error: " + e.getMessage());
 		}
 		return count;
-
 	}
+	 
 
+
+		
+		
+		
+	
 	public static void main(String args[]) {
-		PortTracker portTracker = new PortTracker();
-		System.out.println(portTracker.fileFetching());
-
+		
 	}
+
 }
