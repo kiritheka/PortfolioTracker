@@ -52,6 +52,7 @@ public class PortfolioImpl implements Portfolio {
 		for (String keySymbol : symbolAndStocks.keySet()) {
 
 			double stockPrice = FetchStockPrice.sendRequest(keySymbol);
+		    System.out.println("%%% IN GET STOCK PRICE METHOD.... WAITING FOR FETCH %%%");
 			stockPriceAndCount.put(stockPrice, symbolAndStocks.get(keySymbol));
 			System.out.println("after fetching : " + keySymbol + " price is " + stockPrice);
 		}

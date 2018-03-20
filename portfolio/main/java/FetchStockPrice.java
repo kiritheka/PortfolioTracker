@@ -18,6 +18,7 @@ public class FetchStockPrice {
 		try {
 			URL urlRequest = new URL("https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=" + keySymbol
 					+ "&interval=1min&apikey=GQ7GFRH3XJS6L2Q5");
+			System.out.println("$$$  FETCHED THROUGH API $$$$");
 			URLConnection connection = urlRequest.openConnection();
 			BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			StringBuilder responseBuilder = new StringBuilder();

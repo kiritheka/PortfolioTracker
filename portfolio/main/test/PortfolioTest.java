@@ -1,17 +1,16 @@
 package portfolio;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.easymock.*;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import org.junit.Rule;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
+
+import static org.mockito.Mockito.*;
 
 class PortfolioTest {
 
@@ -39,18 +38,21 @@ class PortfolioTest {
 	}
 
 	@Test
-	@Tag("API fetch")
 	void testGetStockPrice() {
 		HashMap<String, Double> expectedResult = new HashMap<>();
 		expectedResult.put("MS", 100.0);
 		expectedResult.put("GOOG", 50.0);
-		
-		
-		FetchStockPrice fetchStockPrice = EasyMock.createMock(FetchStockPrice.class);
-        Double price = 78.00;
-		EasyMock.expect(fetchStockPrice.sendRequest(EasyMock.isA(String.class))).andReturn(price);
-		
-		assertEquals("{1135.73=50.0, 57.51=100.0}", portfolioImpl.getStockPrice(expectedResult).toString());
+
+		HashMap<Double, Double> stockPriceAndCount = new HashMap<Double, Double>();
+		stockPriceAndCount.put(1135.73, 50.0);
+		stockPriceAndCount.put(57.51, 100.0);
+
+		PortfolioImpl portfolioImpl = mock(PortfolioImpl.class);
+		// when(portfolioImpl.getStockPrice(expectedResult)).thenReturn(stockPriceAndCount);
+		doReturn(stockPriceAndCount).when(portfolioImpl).getStockPrice(expectedResult);
+		assertEquals("{1135.73=50.0, 57.51=100.0}".toString(), portfolioImpl.getStockPrice(expectedResult).toString());
+
+		// assertEquals("{1135.73=50.0,57.51=100.0}",portfolioImpl.getStockPrice(expectedResult).toString());
 
 	}
 
