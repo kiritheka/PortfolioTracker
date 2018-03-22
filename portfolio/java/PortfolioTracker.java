@@ -5,10 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Scanner;
 
 public class PortfolioTracker {
@@ -17,14 +15,14 @@ public class PortfolioTracker {
 	LinkedHashMap<String, Double> allUserTotal = new LinkedHashMap<String, Double>();
 	LinkedHashMap<String, String> allUserPortfolio = new LinkedHashMap<String, String>();
 
-	public String getLocationToRead() {
+	public String getLocationToRead() throws IOException {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter the location of file to be read");
 		String locationToRead = scan.next();
 		return locationToRead;
 	}
 
-	public String getLocationToWrite() {
+	public String getLocationToWrite() throws IOException {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter the location of file to be written");
 		String locationToWrite = scan.next();
@@ -50,8 +48,8 @@ public class PortfolioTracker {
 			System.out.println(allUserTotal);
 			System.out.println(allUserPortfolio);
 
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println(e);
 		}
 		sortedUserList = portfolioImpll1.sortingPortfolio(allUserTotal, allUserPortfolio);
 		return sortedUserList;
@@ -59,6 +57,7 @@ public class PortfolioTracker {
 
 	public void PortfolioExecution(String[] sortedUserList, String locationToWrite) throws IOException {
 		portfolioImpll1.writingInFile(sortedUserList, locationToWrite);
+
 	}
 
 	public static void main(String[] args) throws Exception {
@@ -69,4 +68,5 @@ public class PortfolioTracker {
 		String[] userArray = portfolioTracker.PortfolioCalculation(locationToRead);
 		portfolioTracker.PortfolioExecution(userArray, locationToWrite);
 	}
+
 }
