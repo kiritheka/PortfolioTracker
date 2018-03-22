@@ -1,7 +1,8 @@
-package portfolio;
+package test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -10,9 +11,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.rules.ExpectedException;
 
+import portfolio.PortfolioImpl;
+
 import static org.mockito.Mockito.*;
 
-class PortfolioTest {
+public class PortfolioTest {
 
 	PortfolioImpl portfolioImpl = new PortfolioImpl();
 
@@ -20,10 +23,14 @@ class PortfolioTest {
 	@DisplayName("Getting Symbols & Stocks")
 	void testGetStocksAndSymbol() {
 		HashMap<String, Double> expectedResult = new HashMap<>();
+		HashMap<String, Double> expectedResultForAdd = new HashMap<>();
+
 		expectedResult.put("GOOG", 50.0);
 		assertEquals(expectedResult, portfolioImpl.getStocksAndSymbol("GOOG-50,MS-"));
-		expectedResult.put("MS", 100.0);
-		assertEquals(expectedResult, portfolioImpl.getStocksAndSymbol("GOOG-50,MS-100"));
+
+		expectedResultForAdd.put("MS", 100.0);
+		expectedResultForAdd.put("GOOG", 550.0);
+		assertEquals(expectedResultForAdd, portfolioImpl.getStocksAndSymbol("GOOG-50,MS-100,GOOG-500"));
 		// assertEquals("{}", portfolioImpll1.getStocksAndSymbol("GOOG-").toString());
 	}
 
@@ -31,7 +38,7 @@ class PortfolioTest {
 	public ExpectedException exception = ExpectedException.none();
 
 	@Test
-	public void doCheckingException() {
+	void doCheckingException() {
 		exception.expect(ArrayIndexOutOfBoundsException.class);
 		exception.expectMessage("empty String");
 		portfolioImpl.getStocksAndSymbol("Goo").toString();
@@ -81,6 +88,13 @@ class PortfolioTest {
 		String[] expectedUserArray = { "INFY-89,AMZN-55", "MS-90,GOOG-34", "GOOG-50,MS-56" };
 
 		assertArrayEquals(expectedUserArray, portfolioImpl.sortingPortfolio(total, userList));
+	}
+
+	@Test
+	void testWritingInFile() throws IOException {
+		String[] SortedUserArray = { "GOOG-100,AMZN-90,MS-80,GOOG-50", "INFY-100,GOOG-50,MS-10", "GOOG-50,MS-10" };
+		portfolioImpl.writingInFile(SortedUserArray, "/home/linuxuser/portTest.txt");
+		assertTrue("home/linuxuser/portTest.txt".length() > 0);
 	}
 
 }
