@@ -1,5 +1,5 @@
 # PortfolioTracker
-####SampleAssessment
+#### SampleAssessment
 
 Assume a text file with a sample content as follows:
 
@@ -17,8 +17,8 @@ Write a program that takes a text file (such as the above) as a command line arg
 An example run would be:
 
 	>> java PortfolioTracker portfolio.txt
-	-GOOG - 100, AMZN - 90, MS - 80
-	-INFY - 100, GOOG - 50, MS - 10
-	-GOOG - 50, MS - 10
+	- GOOG - 100, AMZN - 90, MS - 80
+	- INFY - 100, GOOG - 50, MS - 10
+	- GOOG - 50, MS - 10
 
 Please note that the above is only a sample file and the input contents may vary.
